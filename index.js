@@ -1,30 +1,35 @@
-let playerSelection = prompt(
-  "Type: 'Rock', 'Paper' or 'Scissors'"
-).toLowerCase();
+let playerScore = 0;
+let computerScore = 0;
 
-// function returnComputerPlay() {
-//   let random = Math.floor(Math.random() * 3);
-//   return random;
-// }
+const choices = ['rock', 'paper', 'scissors'];
 
-function playRound(playerSelection) {
-  // let computerSelection = returnComputerPlay();
-  const options = ['rock', 'paper', 'scissors'];
-  const computerSelection = options[Math.floor(Math.random() * options.length)];
-  console.log(computerSelection);
+function playRound() {
+  let playerChoice = prompt(
+    "Type: 'Rock', 'Paper' or 'Scissors'"
+  ).toLowerCase();
+  console.log('You chose', playerChoice);
+  let computerChoice = choices[Math.floor(Math.random() * choices.length)];
+  console.log('The computer chose', computerChoice);
   if (
-    (playerSelection == 'rock' && computerSelection == 'scissors') ||
-    (playerSelection == 'paper' && computerSelection == 'rock') ||
-    (playerSelection == 'scissors' && computerSelection == 'rock')
+    (playerChoice == 'rock' && computerChoice == 'scissors') ||
+    (playerChoice == 'paper' && computerChoice == 'rock') ||
+    (playerChoice == 'scissors' && computerChoice == 'paper')
   ) {
-    return 'You win';
-  } else if (playerSelection == computerSelection) {
-    return 'You draw';
+    playerScore++;
+    result = 'You win';
+  } else if (playerChoice == computerChoice) {
+    result = 'You draw';
   } else {
-    return 'You lose';
+    computerScore++;
+    result = 'You lose';
+  }
+  return result;
+}
+
+function game() {
+  for (let i = 0; i < 5; i++) {
+    console.log(playRound(i));
+    console.log(playerScore);
   }
 }
-//rock 0, paper 1, scissors, 2
-
-console.log(playerSelection);
-console.log(playRound());
+console.log(game());
